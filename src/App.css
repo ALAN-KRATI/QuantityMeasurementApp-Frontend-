@@ -7,6 +7,10 @@
 
 body {
   min-height: 100vh;
+}
+
+.auth-page {
+  min-height: 100vh;
   background: #8f8f8f;
   display: flex;
   justify-content: center;
@@ -136,7 +140,8 @@ label {
   margin-bottom: 8px;
 }
 
-input {
+input,
+select {
   width: 100%;
   height: 44px;
   padding: 0 14px;
@@ -178,4 +183,189 @@ button {
 
 button:hover {
   background: #8a1f2c;
+}
+
+.dashboard-page {
+  min-height: 100vh;
+  background: #efeff4;
+  padding: 24px;
+}
+
+.dashboard-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #efeff4;
+}
+
+.top-bar {
+  background: linear-gradient(90deg, #3357f5, #4b73ff);
+  color: white;
+  padding: 18px 22px;
+  border-radius: 14px 14px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.app-logo {
+  width: 38px;
+  height: 38px;
+  background: #0b1545;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.top-bar h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  width: auto;
+  padding: 0 18px;
+  background: white;
+  color: #3357f5;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #e8ecff;
+}
+
+.dashboard-content {
+  background: #f5f5fa;
+  padding: 34px 36px 40px;
+  border-radius: 0 0 14px 14px;
+}
+
+.section-title {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.type-card-container {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.type-card {
+  width: 160px;
+  height: 130px;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease;
+}
+
+.type-card:hover {
+  transform: translateY(-2px);
+}
+
+.selected-card {
+  border-color: #49d2bc;
+  background: #eafaf7;
+}
+
+.type-icon {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.type-card p {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.operation-container {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.operation-btn {
+  width: auto;
+  padding: 0 18px;
+  background: white;
+  color: #333;
+  border: 1px solid #d7d7e2;
+}
+
+.operation-btn:hover {
+  background: #f0f0f8;
+  color: #111;
+}
+
+.active-operation {
+  background: #3357f5;
+  color: white;
+}
+
+.active-operation:hover {
+  background: #2547dc;
+}
+
+.input-section {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.input-box {
+  flex: 1;
+  min-width: 260px;
+}
+
+.input-box label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.input-box input,
+.input-box select {
+  margin-bottom: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.note-text {
+  margin-bottom: 18px;
+  color: #c04d4d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.primary-action-btn {
+  width: 180px;
+  background: #20b486;
+}
+
+.primary-action-btn:hover {
+  background: #18946d;
 }
