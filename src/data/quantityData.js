@@ -14,8 +14,27 @@ export const operationOptions = [
 ];
 
 export const unitsMap = {
-  length: ["Centimetre", "Yard", "Inch", "Foot"],
-  weight: ["Gram", "Kilogram","Pound"],
-  volume: ["Millilitre", "Litre", "Gallon"],
-  temperature: ["Celsius", "Fahrenheit"],
+  length: [
+    { label: "Centimetre", value: "CENTIMETER" },
+    { label: "Yards", value: "YARDS" },
+    { label: "Inch", value: "INCH" },
+    { label: "Feet", value: "FEET" },
+  ],
+
+  weight: [
+    { label: "Gram", value: "GRAM" },
+    { label: "Kilogram", value: "KILOGRAM" },
+    { label: "Pound", value: "POUND" },
+  ],
+
+  volume: [
+    { label: "Millilitre", value: "MILLILITER" },
+    { label: "Litre", value: "LITER" },
+    { label: "Gallon", value: "GALLON" },
+  ],
+
+  temperature: [
+    { label: "Celsius", value: "CELSIUS" },
+    { label: "Fahrenheit", value: "FAHRENHEIT" },
+  ],
 };

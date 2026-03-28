@@ -369,3 +369,69 @@ button:hover {
 .primary-action-btn:hover {
   background: #18946d;
 }
+
+.tab {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  color: #8c8c8c;
+  user-select: none;
+}
+
+.tab:focus,
+.tab:active {
+  outline: none;
+  color: #111;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  color: #888;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #d5d5d5;
+}
+
+.divider span {
+  margin: 0 12px;
+}
+
+.google-login-btn {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background:   #a52a36;
+  color: #333;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.google-login-btn:hover {
+  background: #ce4646;
+}
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  color: #4285f4;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
