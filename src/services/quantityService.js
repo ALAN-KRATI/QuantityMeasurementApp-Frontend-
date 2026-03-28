@@ -31,4 +31,11 @@ export const quantityService = {
   divide: (body) => callApi(API_ENDPOINTS.DIVIDE, body),
   compare: (body) => callApi(API_ENDPOINTS.COMPARE, body),
   convert: (body) => callApi(API_ENDPOINTS.CONVERT, body),
+  getHistory: () => fetch(API_ENDPOINTS.HISTORY, {
+    method: "GET",
+    headers: getHeaders(),
+  }).then(res => {
+    if (!res.ok) throw new Error("Failed to fetch history");
+    return res.json();
+  }),
 };

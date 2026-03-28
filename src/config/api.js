@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8081";
+export const BASE_URL = "http://localhost:8080";
 
 export const API_ENDPOINTS = {
   LOGIN: `${BASE_URL}/auth/login`,
@@ -9,4 +9,5 @@ export const API_ENDPOINTS = {
   DIVIDE: `${BASE_URL}/quantities/divide`,
   COMPARE: `${BASE_URL}/quantities/compare`,
   CONVERT: `${BASE_URL}/quantities/convert`,
+  HISTORY: `${BASE_URL}/quantities/history`,
 };
