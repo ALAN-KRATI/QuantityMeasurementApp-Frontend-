@@ -10,18 +10,28 @@ function OAuthSuccess({ onLoginSuccess }) {
 
     if (token) {
       localStorage.setItem("token", token);
+      console.log("OAuth2: Token stored successfully");
 
       if (onLoginSuccess) {
         onLoginSuccess();
       }
 
-      navigate("/");
+      // Small delay to ensure state updates before navigation
+      setTimeout(() => {
+        navigate("/");
+      }, 100);
     } else {
+      console.log("OAuth2: No token found in URL");
       navigate("/");
     }
-  }, []);
+  }, [searchParams, navigate, onLoginSuccess]);
 
-  return <div>Logging you in...</div>;
+  return (
+    <div style={{ padding: "50px", textAlign: "center" }}>
+      <h2>Logging you in...</h2>
+      <p>Please wait while we complete the authentication.</p>
+    </div>
+  );
 }
 
 export default OAuthSuccess;
