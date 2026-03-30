@@ -1,9 +1,11 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+const AUTH_BASE_URL = import.meta.env.VITE_AUTH_URL || API_BASE_URL;
 
 export const API_ENDPOINTS = {
   LOGIN: `${API_BASE_URL}/auth/login`,
   REGISTER: `${API_BASE_URL}/auth/register`,
-  OAUTH2_GOOGLE: `${API_BASE_URL}/oauth2/authorization/google`,
+  // OAuth2 uses direct auth-service URL to avoid gateway encoding issues
+  OAUTH2_GOOGLE: `${AUTH_BASE_URL}/oauth2/authorization/google`,
 
   ADD: `${API_BASE_URL}/quantities/add`,
   SUBTRACT: `${API_BASE_URL}/quantities/subtract`,
