@@ -6,6 +6,7 @@ export async function loginUser(loginData) {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(loginData),
     });
 
@@ -28,6 +29,7 @@ export async function registerUser(registerData) {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(registerData),
     });
 

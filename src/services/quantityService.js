@@ -10,19 +10,27 @@ function getHeaders() {
 }
 
 async function callApi(url, body) {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify(body),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: getHeaders(),
+      credentials: "include",
+      body: JSON.stringify(body),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Something went very wrong. The backend said nope.");
+    if (!response.ok) {
+      throw new Error(data.message || data.error || `Request failed with status ${response.status}`);
+    }
+
+    return data;
+  } catch (error) {
+    if (error.message === "Failed to fetch") {
+      throw new Error("Cannot connect to server. Please check your internet connection or try again later.");
+    }
+    throw error;
   }
-
-  return data;
 }
 
 export const quantityService = {
@@ -34,6 +42,7 @@ export const quantityService = {
   getHistory: () => fetch(API_ENDPOINTS.HISTORY, {
     method: "GET",
     headers: getHeaders(),
+    credentials: "include",
   }).then(res => {
     if (!res.ok) throw new Error("Failed to fetch history");
     return res.json();
