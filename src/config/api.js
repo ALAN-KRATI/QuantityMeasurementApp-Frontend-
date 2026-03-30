@@ -1,11 +1,14 @@
-export const API_ENDPOINTS = {
-  LOGIN: "http://localhost:8081/auth/login",
-  REGISTER: "http://localhost:8081/auth/register",
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
-  ADD: "http://localhost:8082/quantities/add",
-  SUBTRACT: "http://localhost:8082/quantities/subtract",
-  DIVIDE: "http://localhost:8082/quantities/divide",
-  COMPARE: "http://localhost:8082/quantities/compare",
-  CONVERT: "http://localhost:8082/quantities/convert",
-  HISTORY: "http://localhost:8082/quantities/history",
+export const API_ENDPOINTS = {
+  LOGIN: `${API_BASE_URL}/auth/login`,
+  REGISTER: `${API_BASE_URL}/auth/register`,
+  OAUTH2_GOOGLE: `${API_BASE_URL}/oauth2/authorization/google`,
+
+  ADD: `${API_BASE_URL}/quantities/add`,
+  SUBTRACT: `${API_BASE_URL}/quantities/subtract`,
+  DIVIDE: `${API_BASE_URL}/quantities/divide`,
+  COMPARE: `${API_BASE_URL}/quantities/compare`,
+  CONVERT: `${API_BASE_URL}/quantities/convert`,
+  HISTORY: `${API_BASE_URL}/quantities/history`,
 };

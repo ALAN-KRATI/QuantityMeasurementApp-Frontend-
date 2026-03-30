@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginUser, registerUser } from "../services/authService";
+import { API_ENDPOINTS } from "../config/api";
 
 function AuthPage({ onLoginSuccess }) {
   const [activeTab, setActiveTab] = useState("login");
@@ -44,8 +45,7 @@ function AuthPage({ onLoginSuccess }) {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href =
-      "http://localhost:8081/oauth2/authorization/google";
+    window.location.href = API_ENDPOINTS.OAUTH2_GOOGLE;
   };
 
   return (
