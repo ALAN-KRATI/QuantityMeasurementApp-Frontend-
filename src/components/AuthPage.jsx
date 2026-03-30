@@ -21,10 +21,24 @@ function AuthPage({ onLoginSuccess }) {
     password: "",
   });
 
+  // Password visibility states
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
+
+  // Error states
+  const [loginError, setLoginError] = useState("");
+  const [signupError, setSignupError] = useState("");
+
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
+    setLoginError("");
 
-    // Show loader
+    // Validate
+    if (!loginData.email || !loginData.password) {
+      setLoginError("Please enter both email and password");
+      return;
+    }
+
     setIsLoading(true);
     setLoadingText("Logging in...");
 
@@ -33,9 +47,8 @@ function AuthPage({ onLoginSuccess }) {
       localStorage.setItem("user", JSON.stringify(response));
       onLoginSuccess();
     } catch (error) {
-      alert(error.message);
+      setLoginError(error.message || "Login failed. Please try again.");
     } finally {
-      // Hide loader
       setIsLoading(false);
       setLoadingText("");
     }
@@ -43,19 +56,25 @@ function AuthPage({ onLoginSuccess }) {
 
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
+    setSignupError("");
 
-    // Show loader
+    // Validate
+    if (!registerData.name || !registerData.email || !registerData.password) {
+      setSignupError("Please fill in all required fields");
+      return;
+    }
+
     setIsLoading(true);
     setLoadingText("Creating account...");
 
     try {
       await registerUser(registerData);
+      setSignupError("");
       alert("Registration successful! Now login.");
       setActiveTab("login");
     } catch (error) {
-      alert(error.message);
+      setSignupError(error.message || "Registration failed. Please try again.");
     } finally {
-      // Hide loader
       setIsLoading(false);
       setLoadingText("");
     }
@@ -115,30 +134,48 @@ function AuthPage({ onLoginSuccess }) {
 
             {activeTab === "login" ? (
               <form className="form" onSubmit={handleLoginSubmit}>
+                {loginError && (
+                  <div style={{ color: "#c04d4d", marginBottom: "16px", fontSize: "14px", textAlign: "center" }}>
+                    {loginError}
+                  </div>
+                )}
+
                 <label htmlFor="loginEmail">Email Id</label>
                 <input
                   type="email"
                   id="loginEmail"
                   placeholder="Enter your email"
                   value={loginData.email}
-                  onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                  onChange={(e) => {
+                    setLoginData({ ...loginData, email: e.target.value });
+                    setLoginError("");
+                  }}
                   disabled={isLoading}
                 />
 
                 <label htmlFor="loginPassword">Password</label>
                 <div className="password-wrapper">
                   <input
-                    type="password"
+                    type={showLoginPassword ? "text" : "password"}
                     id="loginPassword"
                     placeholder="Enter your password"
                     value={loginData.password}
-                    onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                    onChange={(e) => {
+                      setLoginData({ ...loginData, password: e.target.value });
+                      setLoginError("");
+                    }}
                     disabled={isLoading}
                   />
-                  <span className="eye-icon">👁️</span>
+                  <span
+                    className="eye-icon"
+                    onClick={() => setShowLoginPassword(!showLoginPassword)}
+                    style={{ cursor: "pointer", userSelect: "none" }}
+                  >
+                    {showLoginPassword ? "🙈" : "👁️"}
+                  </span>
                 </div>
 
-                <button type="submit" disabled={isLoading}>
+                <button type="submit" disabled={isLoading || !loginData.email || !loginData.password}>
                   {isLoading ? "Please wait..." : "Login"}
                 </button>
 
@@ -176,37 +213,58 @@ function AuthPage({ onLoginSuccess }) {
               </form>
             ) : (
               <form className="form" onSubmit={handleRegisterSubmit}>
-                <label htmlFor="fullName">Full Name</label>
+                {signupError && (
+                  <div style={{ color: "#c04d4d", marginBottom: "16px", fontSize: "14px", textAlign: "center" }}>
+                    {signupError}
+                  </div>
+                )}
+
+                <label htmlFor="fullName">Full Name *</label>
                 <input
                   type="text"
                   id="fullName"
                   placeholder="Enter your full name"
                   value={registerData.name}
-                  onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
+                  onChange={(e) => {
+                    setRegisterData({ ...registerData, name: e.target.value });
+                    setSignupError("");
+                  }}
                   disabled={isLoading}
                 />
 
-                <label htmlFor="signupEmail">Email Id</label>
+                <label htmlFor="signupEmail">Email Id *</label>
                 <input
                   type="email"
                   id="signupEmail"
                   placeholder="Enter your email"
                   value={registerData.email}
-                  onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                  onChange={(e) => {
+                    setRegisterData({ ...registerData, email: e.target.value });
+                    setSignupError("");
+                  }}
                   disabled={isLoading}
                 />
 
-                <label htmlFor="signupPassword">Password</label>
+                <label htmlFor="signupPassword">Password *</label>
                 <div className="password-wrapper">
                   <input
-                    type="password"
+                    type={showSignupPassword ? "text" : "password"}
                     id="signupPassword"
                     placeholder="Enter your password"
                     value={registerData.password}
-                    onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                    onChange={(e) => {
+                      setRegisterData({ ...registerData, password: e.target.value });
+                      setSignupError("");
+                    }}
                     disabled={isLoading}
                   />
-                  <span className="eye-icon">👁️</span>
+                  <span
+                    className="eye-icon"
+                    onClick={() => setShowSignupPassword(!showSignupPassword)}
+                    style={{ cursor: "pointer", userSelect: "none" }}
+                  >
+                    {showSignupPassword ? "🙈" : "👁️"}
+                  </span>
                 </div>
 
                 <label htmlFor="mobileNumber">Mobile Number</label>
@@ -219,7 +277,10 @@ function AuthPage({ onLoginSuccess }) {
                   disabled={isLoading}
                 />
 
-                <button type="submit" disabled={isLoading}>
+                <button
+                  type="submit"
+                  disabled={isLoading || !registerData.name || !registerData.email || !registerData.password}
+                >
                   {isLoading ? "Please wait..." : "Signup"}
                 </button>
               </form>
