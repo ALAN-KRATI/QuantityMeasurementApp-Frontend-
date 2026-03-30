@@ -1,13 +1,11 @@
-export const BASE_URL = "http://localhost:8080";
-
 export const API_ENDPOINTS = {
-  LOGIN: `${BASE_URL}/auth/login`,
-  REGISTER: `${BASE_URL}/auth/register`,
+  LOGIN: "http://localhost:8081/auth/login",
+  REGISTER: "http://localhost:8081/auth/register",
 
-  ADD: `${BASE_URL}/quantities/add`,
-  SUBTRACT: `${BASE_URL}/quantities/subtract`,
-  DIVIDE: `${BASE_URL}/quantities/divide`,
-  COMPARE: `${BASE_URL}/quantities/compare`,
-  CONVERT: `${BASE_URL}/quantities/convert`,
-  HISTORY: `${BASE_URL}/quantities/history`,
+  ADD: "http://localhost:8082/quantities/add",
+  SUBTRACT: "http://localhost:8082/quantities/subtract",
+  DIVIDE: "http://localhost:8082/quantities/divide",
+  COMPARE: "http://localhost:8082/quantities/compare",
+  CONVERT: "http://localhost:8082/quantities/convert",
+  HISTORY: "http://localhost:8082/quantities/history",
 };
