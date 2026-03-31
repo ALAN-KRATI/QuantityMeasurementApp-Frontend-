@@ -1,18 +1,13 @@
-// API Gateway URL - hardcoded for production
-const API_BASE_URL = "https://api-gateway-production-0ec0.up.railway.app";
-
 export const API_ENDPOINTS = {
-  LOGIN: `${API_BASE_URL}/auth/login`,
-  REGISTER: `${API_BASE_URL}/auth/register`,
-  // OAuth2 uses direct auth-service URL to avoid gateway encoding issues
-  OAUTH2_GOOGLE: `https://auth-service-production-6f8f.up.railway.app/oauth2/authorization/google`,
+  LOGIN: "https://auth-service-production-6f8f.up.railway.app/auth/login",
+  REGISTER: "https://auth-service-production-6f8f.up.railway.app/auth/register",
+  OAUTH2_GOOGLE:
+    "https://auth-service-production-6f8f.up.railway.app/oauth2/authorization/google",
 
-  ADD: `${API_BASE_URL}/quantities/add`,
-  SUBTRACT: `${API_BASE_URL}/quantities/subtract`,
-  DIVIDE: `${API_BASE_URL}/quantities/divide`,
-  COMPARE: `${API_BASE_URL}/quantities/compare`,
-  CONVERT: `${API_BASE_URL}/quantities/convert`,
-  HISTORY: `${API_BASE_URL}/quantities/history`,
+  ADD: "https://qma-service-production.up.railway.app/quantities/add",
+  SUBTRACT: "https://qma-service-production.up.railway.app/quantities/subtract",
+  DIVIDE: "https://qma-service-production.up.railway.app/quantities/divide",
+  COMPARE: "https://qma-service-production.up.railway.app/quantities/compare",
+  CONVERT: "https://qma-service-production.up.railway.app/quantities/convert",
+  HISTORY: "https://qma-service-production.up.railway.app/quantities/history",
 };
-
-export default API_BASE_URL;
