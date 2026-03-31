@@ -200,38 +200,56 @@ function Dashboard({ onLogout }) {
             {loading
               ? "Processing..."
               : selectedOperation === "conversion"
-                ? "Convert"
-                : selectedOperation === "comparison"
-                  ? "Compare"
-                  : "Calculate"}
+              ? "Convert"
+              : selectedOperation === "comparison"
+              ? "Compare"
+              : "Calculate"}
           </button>
 
-          <div className="history-card" key={item.id || index}>
-            <div className="history-card-header">
-              <span className="history-operation">{item.operation}</span>
+          <div className="history-section">
+            <h3 className="section-title">RECENT HISTORY</h3>
 
-              <span className="history-date">
-                {item.createdAt
-                  ? new Date(item.createdAt).toLocaleString()
-                  : ""}
-              </span>
-            </div>
+            {historyLoading ? (
+              <p className="history-empty">Loading history...</p>
+            ) : history.length === 0 ? (
+              <p className="history-empty">
+                No history yet. Your app currently has the memory of a potato.
+              </p>
+            ) : (
+              <div className="history-list">
+                {history.map((item, index) => (
+                  <div className="history-card" key={item.id || index}>
+                    <div className="history-card-header">
+                      <span className="history-operation">
+                        {item.operation}
+                      </span>
 
-            <div className="history-expression">
-              {item.thisQuantity}
+                      <span className="history-date">
+                        {item.createdAt
+                          ? new Date(item.createdAt).toLocaleString()
+                          : ""}
+                      </span>
+                    </div>
 
-              {item.operation === "ADD" && " + "}
-              {item.operation === "SUBTRACT" && " - "}
-              {item.operation === "DIVIDE" && " ÷ "}
-              {item.operation === "COMPARE" && " =? "}
-              {item.operation === "CONVERT" && " → "}
+                    <div className="history-expression">
+                      {item.thisQuantity || ""}
 
-              {item.thatQuantity}
-            </div>
+                      {item.operation === "ADD" && " + "}
+                      {item.operation === "SUBTRACT" && " - "}
+                      {item.operation === "DIVIDE" && " ÷ "}
+                      {item.operation === "COMPARE" && " =? "}
+                      {item.operation === "CONVERT" && " → "}
 
-            <div className="history-result">
-              {item.result}
-            </div>
+                      {item.thatQuantity || ""}
+                    </div>
+
+                    <div className="history-result">
+                      {item.result}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
