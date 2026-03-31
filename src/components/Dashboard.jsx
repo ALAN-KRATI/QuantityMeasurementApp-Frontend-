@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   quantityTypes,
   operationOptions,
@@ -22,15 +22,33 @@ function Dashboard({ onLogout }) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [history, setHistory] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+
   const availableOperations =
     selectedType === "temperature"
       ? operationOptions.filter((operation) => operation.id === "conversion")
       : operationOptions;
 
+  const loadHistory = async () => {
+    try {
+      setHistoryLoading(true);
+      const data = await quantityService.getHistory();
+      setHistory(data);
+    } catch (error) {
+      console.error("Failed to load history:", error);
+    } finally {
+      setHistoryLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadHistory();
+  }, []);
+
   const handleTypeChange = (type) => {
     setSelectedType(type);
 
-    // reset values when type changes
     setValue1("");
     setUnit1("");
     setValue2("");
@@ -95,16 +113,18 @@ function Dashboard({ onLogout }) {
 
         case "conversion":
           response = await quantityService.convert(payload);
+
           const convertedResult = response.result || "";
           const numericValue = convertedResult.split(" ")[0];
           setValue2(numericValue);
           break;
-          
+
         default:
           return;
       }
 
       setResult(response);
+      await loadHistory();
     } catch (error) {
       alert(error.message);
     } finally {
@@ -185,6 +205,52 @@ function Dashboard({ onLogout }) {
                   ? "Compare"
                   : "Calculate"}
           </button>
+
+          <div className="history-section">
+            <h3 className="section-title">RECENT HISTORY</h3>
+
+            {historyLoading ? (
+              <p className="history-empty">Loading history...</p>
+            ) : history.length === 0 ? (
+              <p className="history-empty">
+                No history yet. Your app is currently running on pure vibes.
+              </p>
+            ) : (
+              <div className="history-list">
+                {history.map((item, index) => (
+                  <div className="history-card" key={item.id || index}>
+                    <div className="history-card-header">
+                      <span className="history-operation">
+                        {item.operation}
+                      </span>
+
+                      <span className="history-date">
+                        {item.createdAt
+                          ? new Date(item.createdAt).toLocaleString()
+                          : ""}
+                      </span>
+                    </div>
+
+                    <div className="history-values">
+                      <div>
+                        <strong>First:</strong> {item.thisQuantity}
+                      </div>
+
+                      {item.thatQuantity && (
+                        <div>
+                          <strong>Second:</strong> {item.thatQuantity}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="history-result">
+                      <strong>Result:</strong> {item.result}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -483,3 +483,60 @@ input:disabled {
   background: #f0f0f0;
   cursor: not-allowed;
 }
+
+.history-section {
+  margin-top: 40px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.history-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.history-operation {
+  font-weight: 700;
+  color: #7dd3fc;
+  font-size: 15px;
+}
+
+.history-date {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.history-values {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.history-result {
+  font-size: 15px;
+  font-weight: 600;
+  color: #facc15;
+}
+
+.history-empty {
+  margin-top: 12px;
+  opacity: 0.8;
+  color: white;
+}
