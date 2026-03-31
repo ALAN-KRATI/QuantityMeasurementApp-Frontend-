@@ -1,16 +1,39 @@
-# React + Vite
+# Quantity Measurement App Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for the Quantity Measurement App built using React + Vite.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React
+- Vite
+- React Router DOM
+- Axios
+- Docker
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup
 
-## React Compiler
+git clone <frontend-repo-url>
+cd quantity-measurement-frontend
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# QMA Frontend Documentation
 
-## Expanding the ESLint configuration
+### ⚙️ Configuration
+Create a `.env` file in the root directory:
+VITE_API_BASE_URL=http://localhost:8080
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+npm run dev
+
+Local URL: http://localhost:5173
+
+✨ Features
+- Authentication: Login / Register & Google OAuth
+- Conversion: Real-time Quantity Conversion
+- Tracking: Conversion History
+
+🔌 API Endpoints Used
+
+Method,Endpoint,Function
+POST,/api/auth/login,User Authentication
+POST,/api/auth/register,User Registration
+POST,/api/quantity/convert,Execute Conversion
+GET,/api/quantity/history,Fetch History
