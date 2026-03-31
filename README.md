@@ -32,8 +32,11 @@ Local URL: http://localhost:5173
 
 🔌 API Endpoints Used
 
-Method,Endpoint,Function
-POST,/api/auth/login,User Authentication
-POST,/api/auth/register,User Registration
-POST,/api/quantity/convert,Execute Conversion
-GET,/api/quantity/history,Fetch History
+## API Endpoints
+
+| Method |        Endpoint          | Function |
+|--------|-----------|--------------|
+| POST   | `/api/auth/login`        | User Authentication |
+| POST   | `/api/auth/register`     | User Registration |
+| POST   | `/api/quantity/convert`  | Execute Conversion |
+| GET    | `/api/quantity/history`  | Fetch History |
