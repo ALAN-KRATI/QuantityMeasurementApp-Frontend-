@@ -206,52 +206,32 @@ function Dashboard({ onLogout }) {
                   : "Calculate"}
           </button>
 
-          <div className="history-section">
-            <h3 className="section-title">RECENT HISTORY</h3>
+          <div className="history-card" key={item.id || index}>
+            <div className="history-card-header">
+              <span className="history-operation">{item.operation}</span>
 
-            {historyLoading ? (
-              <p className="history-empty">Loading history...</p>
-            ) : history.length === 0 ? (
-              <p className="history-empty">
-                No history yet. Your app is currently running on pure vibes.
-              </p>
-            ) : (
-              <div className="history-list">
-                {history.map((item, index) => (
-                  <div className="history-card" key={item.id || index}>
-                    <div className="history-card-header">
-                      <span className="history-operation">
-                        {item.operation}
-                      </span>
+              <span className="history-date">
+                {item.createdAt
+                  ? new Date(item.createdAt).toLocaleString()
+                  : ""}
+              </span>
+            </div>
 
-                      <span className="history-date">
-                        {item.createdAt
-                          ? new Date(item.createdAt).toLocaleString()
-                          : ""}
-                      </span>
-                    </div>
+            <div className="history-expression">
+              {item.thisQuantity}
 
-                    <div className="history-values">
-                      <div>
-                        <strong>First:</strong>{" "}
-                        {item.thisQuantity || item.firstQuantity || "N/A"}
-                      </div>
+              {item.operation === "ADD" && " + "}
+              {item.operation === "SUBTRACT" && " - "}
+              {item.operation === "DIVIDE" && " ÷ "}
+              {item.operation === "COMPARE" && " =? "}
+              {item.operation === "CONVERT" && " → "}
 
-                      {(item.thatQuantity || item.secondQuantity) && (
-                        <div>
-                          <strong>Second:</strong>{" "}
-                          {item.thatQuantity || item.secondQuantity}
-                        </div>
-                      )}
-                    </div>
+              {item.thatQuantity}
+            </div>
 
-                    <div className="history-result">
-                      <strong>Result:</strong> {item.result}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="history-result">
+              {item.result}
+            </div>
           </div>
         </div>
       </div>
