@@ -200,10 +200,10 @@ function Dashboard({ onLogout }) {
             {loading
               ? "Processing..."
               : selectedOperation === "conversion"
-              ? "Convert"
-              : selectedOperation === "comparison"
-              ? "Compare"
-              : "Calculate"}
+                ? "Convert"
+                : selectedOperation === "comparison"
+                  ? "Compare"
+                  : "Calculate"}
           </button>
 
           <div className="history-section">
@@ -232,15 +232,23 @@ function Dashboard({ onLogout }) {
                     </div>
 
                     <div className="history-expression">
-                      {item.thisQuantity || ""}
+                      {item.thisQuantity ||
+                        item.firstQuantity ||
+                        item.quantity1 ||
+                        item.input1 ||
+                        ""}
 
                       {item.operation === "ADD" && " + "}
                       {item.operation === "SUBTRACT" && " - "}
                       {item.operation === "DIVIDE" && " ÷ "}
-                      {item.operation === "COMPARE" && " =? "}
+                      {item.operation === "COMPARE" && " = "}
                       {item.operation === "CONVERT" && " → "}
 
-                      {item.thatQuantity || ""}
+                      {item.thatQuantity ||
+                        item.secondQuantity ||
+                        item.quantity2 ||
+                        item.input2 ||
+                        ""}
                     </div>
 
                     <div className="history-result">
