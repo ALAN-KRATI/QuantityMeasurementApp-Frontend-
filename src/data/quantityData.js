@@ -28,7 +28,7 @@ export const unitsMap = {
   ],
 
   volume: [
-    { label: "Millilitre", value: "MILLILITER" },
+    { label: "Millilitre", value: "MILLILITRE" },
     { label: "Litre", value: "LITER" },
     { label: "Gallon", value: "GALLON" },
   ],
