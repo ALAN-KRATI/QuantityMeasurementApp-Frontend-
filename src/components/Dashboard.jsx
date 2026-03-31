@@ -233,12 +233,14 @@ function Dashboard({ onLogout }) {
 
                     <div className="history-values">
                       <div>
-                        <strong>First:</strong> {item.thisQuantity}
+                        <strong>First:</strong>{" "}
+                        {item.thisQuantity || item.firstQuantity || "N/A"}
                       </div>
 
-                      {item.thatQuantity && (
+                      {(item.thatQuantity || item.secondQuantity) && (
                         <div>
-                          <strong>Second:</strong> {item.thatQuantity}
+                          <strong>Second:</strong>{" "}
+                          {item.thatQuantity || item.secondQuantity}
                         </div>
                       )}
                     </div>
